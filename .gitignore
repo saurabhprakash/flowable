@@ -55,3 +55,8 @@ nb-configuration.xml
 release.properties
 pom.xml.releaseBackup
 pom.xml.tag
+
+.metadata/
+
+bootstrap/mvnw
+bootstrap/mvnw.cmd
