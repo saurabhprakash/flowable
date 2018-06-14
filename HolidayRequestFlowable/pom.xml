@@ -15,11 +15,17 @@
             <artifactId>flowable-engine</artifactId>
             <version>6.3.1</version>
         </dependency>
-        <dependency>
+        <!-- <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>1.3.176</version>
-        </dependency>
+        </dependency> -->
+        <dependency>
+		    <groupId>mysql</groupId>
+		    <artifactId>mysql-connector-java</artifactId>
+		    <version>5.1.45</version>
+		</dependency>
+        
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
