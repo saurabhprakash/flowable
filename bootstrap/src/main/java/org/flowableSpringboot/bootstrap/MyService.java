@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.flowable.engine.RuntimeService;
 import org.flowable.engine.TaskService;
+import org.flowable.engine.runtime.ProcessInstance;
 import org.flowable.task.api.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,7 +33,22 @@ public class MyService {
         Map<String, Object> variables = new HashMap<String, Object>();
         variables.put("person", person);
         runtimeService.startProcessInstanceByKey("oneTaskProcess", variables);
-        // runtimeService.startProcessInstanceByKey("oneTaskProcess");
+        // System.out.println("We have now" + runtimeService.createNativeProcessInstanceQuery().count() + " process instances !");
+        System.out.println("Created process - 1");
+        runtimeService.startProcessInstanceByKey("oneTaskProcess");
+        System.out.println("Created process - 2");
+        runtimeService.startProcessInstanceByKey("testProcess");
+        
+        
+        
+        List<ProcessInstance> instanceList = runtimeService
+    	      .createProcessInstanceQuery()
+    	      .processDefinitionKey("testProcess")
+    	      .list();
+        System.out.println("Length of list=" + instanceList.size());
+    	for (ProcessInstance queryProcessInstance : instanceList) {
+    		 System.out.println("########### id=" + queryProcessInstance.getId());
+    	}
     }
 
     @Transactional
