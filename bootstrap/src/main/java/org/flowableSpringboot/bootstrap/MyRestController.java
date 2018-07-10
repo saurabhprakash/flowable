@@ -20,6 +20,9 @@ public class MyRestController {
 
     @RequestMapping(value="/process", method= RequestMethod.POST)
     public void startProcessInstance(@RequestBody StartProcessRepresentation startProcessRepresentation) {
+    	
+    	System.out.println("1="+startProcessRepresentation.assignee);
+    	System.out.println("2="+startProcessRepresentation.getAssignee());
         myService.startProcess(startProcessRepresentation.getAssignee());
     }
 
