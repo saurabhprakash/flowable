@@ -66,6 +66,22 @@ public class GetLoanServices {
 			throw new InterruptedException();
 		}
 	}
-
+	
+		
+	public Object disburseLoanApplication(DelegateExecution delegateExecution) throws IOException, 
+	InterruptedException, Exception {
+		try {
+			System.out.println("...................Executed process with name "+
+								delegateExecution.getEventName()+
+								" with process definition Id "+
+								delegateExecution.getProcessDefinitionId()+
+								" with process instance Id "+delegateExecution.getProcessInstanceId()+
+								" and current task name is "+
+								delegateExecution.getVariables()+"..."+delegateExecution.getVariable("name"));		
+			return delegateExecution;
+		} catch (Exception e) {
+			throw new InterruptedException();
+		}
+	}
 }
 

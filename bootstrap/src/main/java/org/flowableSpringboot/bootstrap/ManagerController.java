@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,13 +21,20 @@ public class ManagerController {
 	@Autowired
 	private TaskService taskService;
 
-    @RequestMapping(value="/manage-application", method= RequestMethod.POST)
-    public String manageApplication(@RequestBody String taskId) {
+    @RequestMapping(value="/manage-application/approve", method= RequestMethod.POST)
+    public String manageApplication(@RequestBody HashMap<String, String> requestParams) {
         
+    	System.out.println("taskId="+requestParams.get("taskId"));
+    	String taskId = requestParams.get("taskId");
     	Map<String, Object> processVariables = taskService.getVariables(taskId);
 		System.out.println("processVariables===>"+processVariables);
 		processVariables.put("approved", true);
+		System.out.println("processVariables===>"+processVariables);
 		//taskService.complete(taskId);
+		
+		Map<String, Object> variables = new HashMap<String, Object>();
+		variables.put("approved", true);
+		taskService.complete(taskId, variables);
     	
     	return "Done";
     }
@@ -38,6 +46,7 @@ public class ManagerController {
     public List<String> getManagerApplications() {
     	List<Task> tasks = taskService.createTaskQuery().taskCandidateGroup("loanManager").active().list();
     	List<String> taskIdList = new ArrayList<>();
+    	System.out.println("You have " + tasks.size() + " tasks");
     	for (Task task: tasks) {
     		taskIdList.add(task.getId());
   		}    	
