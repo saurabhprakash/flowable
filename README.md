@@ -11,6 +11,7 @@
   - Build the JAR file: ```./mvnw clean package```
 
 #### Some helpers:
+ - For install mvn on mac: "brew install maven"
  - For installing mvnw, run following command: ```mvn -N io.takari:maven:wrapper``` (More on mvnw can be read here: https://github.com/takari/maven-wrapper)
  
 #### Current Sample Requests:
